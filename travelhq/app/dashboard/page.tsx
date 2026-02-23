@@ -53,35 +53,36 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 max-w-6xl mx-auto space-y-6 md:space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">My Trips ✈️</h1>
-          <p className="text-slate-500 mt-1">Plan, explore, and relive your adventures</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Trips ✈️</h1>
+          <p className="text-slate-500 mt-1 text-sm md:text-base">Plan, explore, and relive your adventures</p>
         </div>
+        {/* Hide on mobile - New Trip button is in top header */}
         <Link
           href="/new-trip"
-          className="flex items-center gap-2 bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-all shadow-sm"
+          className="hidden md:flex items-center gap-2 bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-all shadow-sm"
         >
           <PlusCircle className="w-4 h-4" /> New Trip
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-3 md:gap-4">
         {[
           { label: "Total Trips", value: trips.length, icon: Plane, color: "text-blue-600" },
           { label: "Countries Visited", value: "4", icon: MapPin, color: "text-green-600" },
           { label: "Total Spent", value: "₹2.3L", icon: IndianRupee, color: "text-purple-600" },
         ].map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center ${color}`}>
-              <Icon className="w-6 h-6" />
+          <div key={label} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-3 md:p-5 flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <div className={`w-9 h-9 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center ${color} shrink-0`}>
+              <Icon className="w-4 h-4 md:w-6 md:h-6" />
             </div>
-            <div>
-              <p className="text-2xl font-bold text-slate-800">{value}</p>
-              <p className="text-sm text-slate-500">{label}</p>
+            <div className="text-center md:text-left">
+              <p className="text-lg md:text-2xl font-bold text-slate-800">{value}</p>
+              <p className="text-[10px] md:text-sm text-slate-500 leading-tight">{label}</p>
             </div>
           </div>
         ))}
