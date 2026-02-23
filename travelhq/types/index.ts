@@ -103,3 +103,16 @@ export interface GeneratedTrip {
   weather_info: string;
   emergency_contacts: { name: string; number: string }[];
 }
+
+// ✅ Added missing types
+export type PricingTier = "free" | "wanderer" | "pro";
+
+export interface PricingPlan {
+  id: PricingTier;
+  name: string;
+  price_inr: number;
+  price_usd: number;
+  trips_per_month: number | "unlimited";
+  popular?: boolean;
+  features: string[];
+}
