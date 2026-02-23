@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
-import { Sparkles, Map, Mic, CreditCard, Star, ArrowRight, Compass, Zap, Shield, Clock, Users } from "lucide-react";
+import { Sparkles, Map, Mic, CreditCard, Star, ArrowRight, Compass, Zap, Shield, Clock, Users, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const features = [
   { icon: Sparkles,   title: "AI Itinerary Generator",  desc: "Claude crafts day-by-day plans with activities, costs, and local tips in seconds.", accent: "#f5b642" },
@@ -29,6 +31,20 @@ const stats = [
   { value: "4.9★",  label: "User Rating"      },
   { value: "< 30s", label: "Trip Generated"   },
 ];
+
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  return (
+    <button onClick={toggle} aria-label="Toggle theme"
+      className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-105"
+      style={{ background: "var(--accent-bg)", border: "1px solid var(--accent-border)" }}>
+      {theme === "dark"
+        ? <Sun  className="w-4 h-4" style={{ color: "var(--accent)" }} />
+        : <Moon className="w-4 h-4" style={{ color: "var(--accent)" }} />
+      }
+    </button>
+  );
+}
 
 export default function LandingPage() {
   return (
@@ -65,6 +81,8 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Theme toggle */}
+          <ThemeToggle />
           <Link href="/dashboard" className="hidden sm:block text-sm font-medium px-4 py-2 rounded-xl transition-all hover:opacity-80"
             style={{ color: "var(--text-secondary)", border: "1px solid var(--border)" }}>
             Sign In
